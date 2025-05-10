@@ -8,7 +8,7 @@ export default antfu(
     react: true,
     typescript: true,
     formatters: true,
-    ignores: ['migrations/**/*', 'next-env.d.ts', ''],
+    ignores: ['migrations/**/*', 'next-env.d.ts', './src/app/(payload)/admin/importMap.js'],
   },
   ...tailwind.configs['flat/recommended'],
   jsxA11y.flatConfigs.recommended,
@@ -29,7 +29,7 @@ export default antfu(
       'react/prefer-destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
       'node/prefer-global/process': 'off', // Allow using `process.env`,
       'eslint-comments/no-unlimited-disable': 'off', // Allow unlimited disable comments,
-      "react-refresh/only-export-components": "off", // Allow exporting components that are not used in the same file
+      'react-refresh/only-export-components': 'off', // Allow exporting components that are not used in the same file
     },
   },
 )
