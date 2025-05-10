@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated } from '@/access/authenticated'
-import { authenticatedOrPublished } from '@/access/authenticated-or-published'
+import { authenticated } from '@/payload/access/authenticated'
+import { authenticatedOrPublished } from '@/payload/access/authenticated-or-published'
 import { slug } from '@/payload/fields/slug'
 
 import { genSlug } from '@/payload/hooks/gen-slug'
