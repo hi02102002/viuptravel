@@ -12,7 +12,7 @@ import { Posts } from './collections/posts'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import Categories from './collections/categories'
 import Tours from './collections/tours'
-
+import { s3Storage } from '@payloadcms/storage-s3'
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -93,6 +93,23 @@ export default buildConfig({
       ],
       tabbedUI: true,
     }),
-    // storage-adapter-placeholder
+    s3Storage({
+      config: {
+        region: 'us-east-1',
+        credentials: {
+          accessKeyId: process.env.MINIO_ACCESS_KEY!,
+          secretAccessKey: process.env.MINIO_SECRET_KEY!,
+        },
+        endpoint: 'http://localhost:9000', // Your MinIO endpoint
+        forcePathStyle: true, // Required for MinIO compatibility
+      },
+      bucket: 'viuptravel',
+      collections: {
+        media: {
+          disableLocalStorage: true,
+        },
+      },
+      disableLocalStorage: true,
+    }),
   ],
 })
