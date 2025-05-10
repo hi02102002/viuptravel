@@ -1,7 +1,8 @@
-import { genSlug } from '@/payload-hooks/gen-slug'
-import { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
+import { slug } from '@/payload/fields/slug'
+import { genSlug } from '@/payload/hooks/gen-slug'
 
-const Categories: CollectionConfig<'categories'> = {
+export const categories: CollectionConfig<'categories'> = {
   slug: 'categories',
   fields: [
     {
@@ -12,18 +13,10 @@ const Categories: CollectionConfig<'categories'> = {
     {
       name: 'cover',
       type: 'upload',
+      required: true,
       relationTo: 'media',
-      required: true,
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      admin: {
-        readOnly: true,
-      },
-    },
+    slug({ trackingField: 'title' }),
     {
       name: 'type',
       type: 'select',
@@ -42,5 +35,3 @@ const Categories: CollectionConfig<'categories'> = {
     beforeValidate: [genSlug('title')],
   },
 }
-
-export default Categories

@@ -1,11 +1,11 @@
+import type { CollectionBeforeValidateHook } from 'payload'
 import { generateUniqueSlug } from '@/utils/gen-unique-slug'
-import { CollectionBeforeValidateHook } from 'payload'
 import slugify from 'slugify'
 
-export const genSlug =
-  (fieldToSlug: string): CollectionBeforeValidateHook =>
-  async ({ collection, operation, req, data, originalDoc }) => {
-    if (!data?.[fieldToSlug]) return data
+export function genSlug(fieldToSlug: string): CollectionBeforeValidateHook {
+  return async ({ collection, operation, req, data, originalDoc }) => {
+    if (!data?.[fieldToSlug])
+      return data
 
     const baseSlug = slugify(data[fieldToSlug], { lower: true, strict: true })
 
@@ -28,3 +28,4 @@ export const genSlug =
 
     return data
   }
+}

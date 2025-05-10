@@ -1,7 +1,7 @@
+import type { CollectionConfig } from 'payload'
 import { authenticated } from '@/access/authenticated'
-import { CollectionConfig } from 'payload'
 
-export const Media: CollectionConfig = {
+export const media: CollectionConfig<'media'> = {
   slug: 'media',
   access: {
     read: () => true,

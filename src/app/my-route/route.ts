@@ -1,7 +1,7 @@
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
-export const GET = async () => {
+export async function GET() {
   const payload = await getPayload({
     config: configPromise,
   })

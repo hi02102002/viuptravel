@@ -1,5 +1,10 @@
-import type { CollectionConfig, Field } from 'payload'
+import type { CollectionConfig } from 'payload'
 
+import { authenticated } from '@/access/authenticated'
+import { authenticatedOrPublished } from '@/access/authenticated-or-published'
+import { slug } from '@/payload/fields/slug'
+
+import { genSlug } from '@/payload/hooks/gen-slug'
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -7,18 +12,8 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
-import {
-  MetaDescriptionField,
-  MetaImageField,
-  MetaTitleField,
-  OverviewField,
-  PreviewField,
-} from '@payloadcms/plugin-seo/fields'
-import { authenticated } from '@/access/authenticated'
-import { authenticatedOrPublished } from '@/access/authenticated-or-published'
-import { genSlug } from '@/payload-hooks/gen-slug'
 
-export const Posts: CollectionConfig<'posts'> = {
+export const posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
     create: authenticated,
@@ -38,15 +33,7 @@ export const Posts: CollectionConfig<'posts'> = {
       type: 'text',
       required: true,
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      admin: {
-        readOnly: true,
-      },
-    },
+    slug({ trackingField: 'title' }),
     {
       type: 'tabs',
       tabs: [

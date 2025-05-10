@@ -1,6 +1,6 @@
-import { Payload } from 'payload'
+import type { Payload } from 'payload'
 
-export const generateUniqueSlug = async ({
+export async function generateUniqueSlug({
   base,
   collection,
   payload,
@@ -10,7 +10,7 @@ export const generateUniqueSlug = async ({
   payload: Payload
   idToIgnore?: string
   collection: keyof Payload['collections']
-}): Promise<string> => {
+}): Promise<string> {
   let slug = base
   let counter = 1
 
@@ -29,7 +29,8 @@ export const generateUniqueSlug = async ({
       },
     })
 
-    if (existing.totalDocs === 0) break
+    if (existing.totalDocs === 0)
+      break
 
     slug = `${base}-${counter}`
     counter++

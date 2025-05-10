@@ -1,4 +1,6 @@
-import { genSlug } from '@/payload-hooks/gen-slug'
+import type { CollectionConfig } from 'payload'
+import { slug } from '@/payload/fields/slug'
+import { genSlug } from '@/payload/hooks/gen-slug'
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -6,9 +8,8 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
-import { CollectionConfig } from 'payload'
 
-const Tours: CollectionConfig = {
+export const tours: CollectionConfig<'tours'> = {
   slug: 'tours',
   fields: [
     {
@@ -16,15 +17,7 @@ const Tours: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      admin: {
-        readOnly: true,
-      },
-    },
+    slug({ trackingField: 'title' }),
     {
       name: 'private_price',
       label: 'Private Price',
@@ -194,5 +187,3 @@ const Tours: CollectionConfig = {
     beforeValidate: [genSlug('title')],
   },
 }
-
-export default Tours

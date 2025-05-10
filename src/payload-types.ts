@@ -144,6 +144,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -163,7 +164,7 @@ export interface Media {
 export interface Post {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   heroImage?: (number | null) | Media;
   content: {
     root: {
@@ -210,7 +211,7 @@ export interface Category {
   id: number;
   title: string;
   cover: number | Media;
-  slug: string;
+  slug?: string | null;
   type: 'post' | 'tour';
   description?: string | null;
   meta?: {
@@ -240,7 +241,7 @@ export interface Category {
 export interface Tour {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   private_price?: number | null;
   group_price?: number | null;
   media_files?: {
@@ -415,6 +416,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

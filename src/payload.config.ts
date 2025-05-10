@@ -1,18 +1,9 @@
+import type { Field } from 'payload'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { buildConfig, Field } from 'payload'
-import { fileURLToPath } from 'url'
-import sharp from 'sharp'
-
-import { Users } from './collections/users'
-import { Media } from './collections/media'
-import { Posts } from './collections/posts'
 import { seoPlugin } from '@payloadcms/plugin-seo'
-import Categories from './collections/categories'
-import Tours from './collections/tours'
-import { s3Storage } from '@payloadcms/storage-s3'
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -21,17 +12,26 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+
+import { s3Storage } from '@payloadcms/storage-s3'
+import { buildConfig } from 'payload'
+import sharp from 'sharp'
+import { categories, media, posts, tours, users } from './collections'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+console.log(path.resolve(dirname))
+
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, Categories, Tours],
+  collections: [users, media, posts, categories, tours],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -107,6 +107,7 @@ export default buildConfig({
       collections: {
         media: {
           disableLocalStorage: true,
+          prefix: 'media',
         },
       },
       disableLocalStorage: true,
