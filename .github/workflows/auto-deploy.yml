@@ -53,8 +53,8 @@ jobs:
         with:
           command: |
             cd /root/apps/viuptravel
-            sudo docker-compose pull
-            sudo docker-compose up -d --force-recreate
+            sudo docker compose pull
+            sudo docker compose up -d --force-recreate
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USERNAME }}
           pass: ${{ secrets.PASSWORD }}
