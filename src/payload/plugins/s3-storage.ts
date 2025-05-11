@@ -8,7 +8,7 @@ export function s3Storage() {
         accessKeyId: process.env.MINIO_ACCESS_KEY!,
         secretAccessKey: process.env.MINIO_SECRET_KEY!,
       },
-      endpoint: 'http://localhost:9000', // Your MinIO endpoint
+      endpoint: process.env.MINIO_ENDPOINT,
       forcePathStyle: true, // Required for MinIO compatibility
     },
     bucket: process.env.MINIO_BUCKET!,
