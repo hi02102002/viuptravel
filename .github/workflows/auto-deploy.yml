@@ -52,7 +52,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd /root/apps
+            cd /root/apps/viuptravel
             sudo docker-compose pull
             sudo docker-compose up -d --force-recreate
           host: ${{ secrets.HOST }}
