@@ -13,6 +13,8 @@ import sharp from 'sharp'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+console.log(process.env.RESEND_API_KEY)
+
 export default buildConfig({
   admin: {
     user: users.slug,

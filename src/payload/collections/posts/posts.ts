@@ -47,6 +47,7 @@ export const posts: CollectionConfig<'posts'> = {
       name: 'cover',
       type: 'upload',
       relationTo: 'media',
+      required: false,
     },
     {
       name: 'category',

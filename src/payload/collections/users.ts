@@ -14,7 +14,28 @@ export const users: CollectionConfig = {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
   },
-  auth: true,
+  auth: {
+    forgotPassword: {
+      generateEmailHTML: (args) => {
+        if (!args) {
+          return ''
+        }
+
+        const { token, req, user } = args
+
+        // Use the token provided to allow your user to reset their password
+        const resetPasswordURL = `http://localhost:3000/admin/reset/${token}`
+
+        req?.payload.logger.info(
+          `Forgot password email sent to ${user.email} with url ${resetPasswordURL}`,
+        )
+
+        return ''
+      },
+
+    },
+
+  },
   fields: [
     {
       name: 'name',

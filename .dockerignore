@@ -6,3 +6,7 @@ README.md
 .env*
 .next
 .git
+.env.keys
+.env.keys
+!.env.local
+!.env.production
