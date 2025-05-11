@@ -1,8 +1,8 @@
-import type { CollectionBeforeValidateHook } from 'payload'
+import type { CollectionBeforeChangeHook } from 'payload'
 import { generateUniqueSlug } from '@/utils/gen-unique-slug'
 import slugify from 'slugify'
 
-export function genSlug(fieldToSlug: string): CollectionBeforeValidateHook {
+export function genSlug(fieldToSlug: string): CollectionBeforeChangeHook {
   return async ({ collection, operation, req, data, originalDoc }) => {
     if (!data?.[fieldToSlug])
       return data

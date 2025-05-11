@@ -1,9 +1,13 @@
 import type { CollectionConfig } from 'payload'
 import { slug } from '@/payload/fields/slug'
 import { genSlug } from '@/payload/hooks/gen-slug'
+import { endpoints } from './endpoints'
 
 export const categories: CollectionConfig<'categories'> = {
   slug: 'categories',
+  admin: {
+    useAsTitle: 'title',
+  },
   fields: [
     {
       name: 'title',
@@ -32,6 +36,10 @@ export const categories: CollectionConfig<'categories'> = {
     },
   ],
   hooks: {
-    beforeValidate: [genSlug('title')],
+    beforeChange: [genSlug('title')],
+  },
+  endpoints,
+  lockDocuments: {
+    duration: 30 * 60 * 1000, // 30 minutes
   },
 }

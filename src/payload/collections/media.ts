@@ -1,10 +1,10 @@
 import type { CollectionConfig } from 'payload'
-import { authenticated } from '@/payload/access/authenticated'
+import { anyone, authenticated } from '@/payload/access'
 
 export const media: CollectionConfig<'media'> = {
   slug: 'media',
   access: {
-    read: () => true,
+    read: anyone,
     create: authenticated,
     update: authenticated,
     delete: authenticated,
@@ -13,7 +13,6 @@ export const media: CollectionConfig<'media'> = {
     {
       name: 'alt',
       type: 'text',
-      required: true,
     },
   ],
   upload: {

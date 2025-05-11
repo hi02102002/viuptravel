@@ -1,7 +1,7 @@
 'use client'
 import type { TextField } from 'payload'
 import { TextInput, useField } from '@payloadcms/ui'
-import { kebabCase } from 'lodash'
+import { kebabCase, omit } from 'lodash'
 
 import { useEffect, useRef } from 'react'
 
@@ -10,7 +10,7 @@ export type SlugInputProps = TextField & {
 }
 
 export function SlugInput(props: SlugInputProps) {
-  const { trackingField, required, admin: { readOnly } = {} } = props
+  const { trackingField, required, admin: { readOnly } = {}, ...rest } = props
 
   const { value: slugValue = '', setValue: setSlugValue } = useField<string>({
     path: 'slug',
@@ -55,6 +55,7 @@ export function SlugInput(props: SlugInputProps) {
       }}
       readOnly={readOnly}
       required={required}
+      {...omit(rest, ['label', 'hasMany'])}
     />
   )
 }

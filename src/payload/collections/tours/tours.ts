@@ -8,9 +8,13 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { endpoints } from './endpoints'
 
 export const tours: CollectionConfig<'tours'> = {
   slug: 'tours',
+  admin: {
+    useAsTitle: 'title',
+  },
   fields: [
     {
       name: 'title',
@@ -184,6 +188,10 @@ export const tours: CollectionConfig<'tours'> = {
     },
   ],
   hooks: {
-    beforeValidate: [genSlug('title')],
+    beforeChange: [genSlug('title')],
+  },
+  endpoints,
+  lockDocuments: {
+    duration: 30 * 60 * 1000, // 30 minutes
   },
 }

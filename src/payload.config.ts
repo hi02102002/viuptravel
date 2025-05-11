@@ -1,14 +1,14 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { categories, media, posts, tours, users } from '@/payload/collections'
+import { s3Storage, seo } from '@/payload/plugins'
+
 import { postgresAdapter } from '@payloadcms/db-postgres'
+
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
-import { categories, media, posts, tours, users } from './collections'
-import { s3Storage, seo } from './payload/plugins'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

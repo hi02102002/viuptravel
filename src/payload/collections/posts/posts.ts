@@ -12,9 +12,13 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { endpoints } from './endpoints'
 
 export const posts: CollectionConfig<'posts'> = {
   slug: 'posts',
+  admin: {
+    useAsTitle: 'title',
+  },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -33,59 +37,16 @@ export const posts: CollectionConfig<'posts'> = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'description',
+      type: 'textarea',
+      required: true,
+    },
     slug({ trackingField: 'title' }),
     {
-      type: 'tabs',
-      tabs: [
-        {
-          fields: [
-            {
-              name: 'heroImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
-            {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
-                },
-              }),
-              label: false,
-              required: true,
-            },
-          ],
-          label: 'Content',
-        },
-      ],
-    },
-
-    {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        date: {
-          pickerAppearance: 'dayAndTime',
-        },
-        position: 'sidebar',
-      },
-      hooks: {
-        beforeChange: [
-          ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
-              return new Date()
-            }
-            return value
-          },
-        ],
-      },
+      name: 'cover',
+      type: 'upload',
+      relationTo: 'media',
     },
     {
       name: 'category',
@@ -100,8 +61,51 @@ export const posts: CollectionConfig<'posts'> = {
         type: { equals: 'post' },
       },
     },
+    {
+      name: 'content',
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+            HorizontalRuleFeature(),
+          ]
+        },
+      }),
+      label: false,
+      required: true,
+    },
+    {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+        position: 'sidebar',
+        placeholder: 'Select a date',
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === 'published' && !value) {
+              return new Date()
+            }
+            return value
+          },
+        ],
+      },
+    },
+
   ],
   hooks: {
-    beforeValidate: [genSlug('title')],
+    beforeChange: [genSlug('title')],
+  },
+  endpoints,
+  lockDocuments: {
+    duration: 30 * 60 * 1000, // 30 minutes
   },
 }

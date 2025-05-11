@@ -143,7 +143,7 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -164,8 +164,10 @@ export interface Media {
 export interface Post {
   id: number;
   title: string;
+  description: string;
   slug?: string | null;
-  heroImage?: (number | null) | Media;
+  cover?: (number | null) | Media;
+  category?: (number | null) | Category;
   content: {
     root: {
       type: string;
@@ -182,7 +184,6 @@ export interface Post {
     [k: string]: unknown;
   };
   publishedAt?: string | null;
-  category?: (number | null) | Category;
   meta?: {
     /**
      * Add keywords to help with SEO
@@ -435,11 +436,12 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   slug?: T;
-  heroImage?: T;
+  cover?: T;
+  category?: T;
   content?: T;
   publishedAt?: T;
-  category?: T;
   meta?:
     | T
     | {

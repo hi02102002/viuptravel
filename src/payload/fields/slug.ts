@@ -16,10 +16,13 @@ export const slug: Slug = ({ trackingField = 'title' } = {}, overrides) =>
             exportName: 'SlugInput',
             clientProps: {
               trackingField,
+              placeholder: 'Enter a slug or leave blank to auto-generate',
+
             },
           },
         },
       },
+      index: true,
     },
     overrides,
   )
