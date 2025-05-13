@@ -90,8 +90,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'top-header': TopHeader;
+  };
+  globalsSelect: {
+    'top-header': TopHeaderSelect<false> | TopHeaderSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -574,6 +578,30 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "top-header".
+ */
+export interface TopHeader {
+  id: number;
+  email: string;
+  phone: string;
+  address?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "top-header_select".
+ */
+export interface TopHeaderSelect<T extends boolean = true> {
+  email?: T;
+  phone?: T;
+  address?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
