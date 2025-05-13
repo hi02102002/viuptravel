@@ -92,9 +92,11 @@ export interface Config {
   };
   globals: {
     'top-header': TopHeader;
+    header: Header;
   };
   globalsSelect: {
     'top-header': TopHeaderSelect<false> | TopHeaderSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
   user: User & {
@@ -593,12 +595,225 @@ export interface TopHeader {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  'nav-links'?:
+    | {
+        label: string;
+        custom_url?: ('internal' | 'external') | null;
+        url?: string | null;
+        resource_to_link?:
+          | ({
+              relationTo: 'categories';
+              value: number | Category;
+            } | null)
+          | ({
+              relationTo: 'posts';
+              value: number | Post;
+            } | null)
+          | ({
+              relationTo: 'tours';
+              value: number | Tour;
+            } | null);
+        is_new_tab?: boolean | null;
+        child_links?:
+          | {
+              label: string;
+              custom_url?: ('internal' | 'external') | null;
+              url?: string | null;
+              resource_to_link?:
+                | ({
+                    relationTo: 'categories';
+                    value: number | Category;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: number | Post;
+                  } | null)
+                | ({
+                    relationTo: 'tours';
+                    value: number | Tour;
+                  } | null);
+              is_new_tab?: boolean | null;
+              child_links?:
+                | {
+                    label: string;
+                    custom_url?: ('internal' | 'external') | null;
+                    url?: string | null;
+                    resource_to_link?:
+                      | ({
+                          relationTo: 'categories';
+                          value: number | Category;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: number | Post;
+                        } | null)
+                      | ({
+                          relationTo: 'tours';
+                          value: number | Tour;
+                        } | null);
+                    is_new_tab?: boolean | null;
+                    child_links?:
+                      | {
+                          label: string;
+                          custom_url?: ('internal' | 'external') | null;
+                          url?: string | null;
+                          resource_to_link?:
+                            | ({
+                                relationTo: 'categories';
+                                value: number | Category;
+                              } | null)
+                            | ({
+                                relationTo: 'posts';
+                                value: number | Post;
+                              } | null)
+                            | ({
+                                relationTo: 'tours';
+                                value: number | Tour;
+                              } | null);
+                          is_new_tab?: boolean | null;
+                          child_links?:
+                            | {
+                                label: string;
+                                custom_url?: ('internal' | 'external') | null;
+                                url?: string | null;
+                                resource_to_link?:
+                                  | ({
+                                      relationTo: 'categories';
+                                      value: number | Category;
+                                    } | null)
+                                  | ({
+                                      relationTo: 'posts';
+                                      value: number | Post;
+                                    } | null)
+                                  | ({
+                                      relationTo: 'tours';
+                                      value: number | Tour;
+                                    } | null);
+                                is_new_tab?: boolean | null;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'nav-link-5';
+                              }[]
+                            | null;
+                          id?: string | null;
+                          blockName?: string | null;
+                          blockType: 'nav-link-4';
+                        }[]
+                      | null;
+                    id?: string | null;
+                    blockName?: string | null;
+                    blockType: 'nav-link-3';
+                  }[]
+                | null;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'nav-link-2';
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'nav-link-1';
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "top-header_select".
  */
 export interface TopHeaderSelect<T extends boolean = true> {
   email?: T;
   phone?: T;
   address?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  'nav-links'?:
+    | T
+    | {
+        'nav-link-1'?:
+          | T
+          | {
+              label?: T;
+              custom_url?: T;
+              url?: T;
+              resource_to_link?: T;
+              is_new_tab?: T;
+              child_links?:
+                | T
+                | {
+                    'nav-link-2'?:
+                      | T
+                      | {
+                          label?: T;
+                          custom_url?: T;
+                          url?: T;
+                          resource_to_link?: T;
+                          is_new_tab?: T;
+                          child_links?:
+                            | T
+                            | {
+                                'nav-link-3'?:
+                                  | T
+                                  | {
+                                      label?: T;
+                                      custom_url?: T;
+                                      url?: T;
+                                      resource_to_link?: T;
+                                      is_new_tab?: T;
+                                      child_links?:
+                                        | T
+                                        | {
+                                            'nav-link-4'?:
+                                              | T
+                                              | {
+                                                  label?: T;
+                                                  custom_url?: T;
+                                                  url?: T;
+                                                  resource_to_link?: T;
+                                                  is_new_tab?: T;
+                                                  child_links?:
+                                                    | T
+                                                    | {
+                                                        'nav-link-5'?:
+                                                          | T
+                                                          | {
+                                                              label?: T;
+                                                              custom_url?: T;
+                                                              url?: T;
+                                                              resource_to_link?: T;
+                                                              is_new_tab?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                      };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                          };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -10,6 +10,7 @@ export type SlugInputProps = TextField & {
 }
 
 export function SlugInput(props: SlugInputProps) {
+  // eslint-disable-next-line react/no-unstable-default-props
   const { trackingField, required, admin: { readOnly } = {}, ...rest } = props
 
   const { value: slugValue = '', setValue: setSlugValue } = useField<string>({

@@ -8,7 +8,7 @@ export default antfu(
     react: true,
     typescript: true,
     formatters: true,
-    ignores: ['migrations/**/*', 'next-env.d.ts', './src/app/(payload)/admin/importMap.js', './src/migrations/**/*'],
+    ignores: ['migrations/**/*', 'next-env.d.ts', './src/app/(payload)/admin/importMap.js', './src/migrations/**/*', './src/payload/migrations/**/*'],
   },
   ...tailwind.configs['flat/recommended'],
   jsxA11y.flatConfigs.recommended,

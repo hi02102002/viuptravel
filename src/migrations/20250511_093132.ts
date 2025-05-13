@@ -1,11 +1,12 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+/* eslint-disable unused-imports/no-unused-vars */
+import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
+import { sql } from '@payloadcms/db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-
   await db.execute(sql`
     ALTER TABLE "posts"
     ADD COLUMN IF NOT EXISTS "cover_id" integer;
-  `);
+  `)
 
   await db.execute(sql`
  DO $$ 
@@ -345,7 +346,6 @@ END $$;
   CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migrations" USING btree ("created_at");
   
   `)
-
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {

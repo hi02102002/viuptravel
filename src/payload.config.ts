@@ -10,11 +10,10 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
+import { header } from './payload/configs/header'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-console.log(process.env.RESEND_API_KEY)
 
 export default buildConfig({
   admin: {
@@ -24,7 +23,7 @@ export default buildConfig({
     },
   },
   collections: [users, media, posts, categories, tours],
-  globals: [topHeader],
+  globals: [topHeader, header],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
