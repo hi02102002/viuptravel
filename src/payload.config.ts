@@ -1,6 +1,5 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { migrations } from '@/migrations'
 import { categories, media, posts, tours, users } from '@/payload/collections'
 
 import { s3Storage, seo } from '@/payload/plugins'
@@ -35,7 +34,6 @@ export default buildConfig({
     },
     migrationDir: path.resolve(dirname, 'migrations'),
     push: false,
-    prodMigrations: migrations,
   }),
   sharp,
   plugins: [
