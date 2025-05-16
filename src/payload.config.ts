@@ -1,16 +1,15 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { migrations } from '@/migrations'
 import { categories, media, posts, tours, users } from '@/payload/collections'
+
 import { s3Storage, seo } from '@/payload/plugins'
-
-import { topHeader } from '@payload/configs/top-header'
-
+import { header, infor, topHeader } from '@payload/configs'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
-import { header } from './payload/configs/header'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,9 +20,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+
   },
   collections: [users, media, posts, categories, tours],
-  globals: [topHeader, header],
+  globals: [topHeader, header, infor],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -35,6 +35,7 @@ export default buildConfig({
     },
     migrationDir: path.resolve(dirname, 'migrations'),
     push: false,
+    prodMigrations: migrations,
   }),
   sharp,
   plugins: [

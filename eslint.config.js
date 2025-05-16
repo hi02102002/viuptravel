@@ -1,7 +1,8 @@
 import antfu from '@antfu/eslint-config'
 import nextPlugin from '@next/eslint-plugin-next'
+import pluginQuery from '@tanstack/eslint-plugin-query'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
-import tailwind from 'eslint-plugin-tailwindcss'
+// import tailwind from 'eslint-plugin-tailwindcss'
 
 export default antfu(
   {
@@ -10,7 +11,8 @@ export default antfu(
     formatters: true,
     ignores: ['migrations/**/*', 'next-env.d.ts', './src/app/(payload)/admin/importMap.js', './src/migrations/**/*', './src/payload/migrations/**/*'],
   },
-  ...tailwind.configs['flat/recommended'],
+  ...pluginQuery.configs['flat/recommended'],
+  // ...tailwind.configs['flat/recommended'],
   jsxA11y.flatConfigs.recommended,
   {
     plugins: {

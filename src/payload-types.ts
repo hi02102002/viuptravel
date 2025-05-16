@@ -93,10 +93,12 @@ export interface Config {
   globals: {
     'top-header': TopHeader;
     header: Header;
+    infor: Infor;
   };
   globalsSelect: {
     'top-header': TopHeaderSelect<false> | TopHeaderSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    infor: InforSelect<false> | InforSelect<true>;
   };
   locale: null;
   user: User & {
@@ -724,6 +726,26 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infor".
+ */
+export interface Infor {
+  id: number;
+  email?: string | null;
+  phone?: string | null;
+  address?: string | null;
+  hotline?: string | null;
+  zalo?: string | null;
+  facebook?: string | null;
+  whatsapp?: string | null;
+  /**
+   * Google map link
+   */
+  map?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "top-header_select".
  */
 export interface TopHeaderSelect<T extends boolean = true> {
@@ -814,6 +836,23 @@ export interface HeaderSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infor_select".
+ */
+export interface InforSelect<T extends boolean = true> {
+  email?: T;
+  phone?: T;
+  address?: T;
+  hotline?: T;
+  zalo?: T;
+  facebook?: T;
+  whatsapp?: T;
+  map?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

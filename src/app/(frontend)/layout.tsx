@@ -1,3 +1,4 @@
+import { Providers } from '@/providers'
 import Script from 'next/script'
 import React from 'react'
 import './styles.css'
@@ -13,7 +14,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <Providers>{children}</Providers>
         <Script
           src="http://160.250.137.182:3001/script.js"
           data-website-id="aa948207-1121-46f0-b1b1-01a55c8a8932"
