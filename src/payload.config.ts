@@ -19,7 +19,6 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-
   },
   collections: [users, media, posts, categories, tours],
   globals: [topHeader, header, infor],
