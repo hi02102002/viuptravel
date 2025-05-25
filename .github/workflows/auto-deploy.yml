@@ -7,17 +7,19 @@ jobs:
   build-check:
     runs-on: ubuntu-latest
     steps:
-        - name: Checking if ready to build
-          run: |
-            COMMIT_MSG=$(git log -1 --pretty=%B)
-            echo "Commit message: $COMMIT_MSG"
-            if [[ "$COMMIT_MSG" == *"[deploy]"* ]]; then
-              echo '✅ Ready to build'
-            else
-              echo '🚫 Not a deploy commit'
-              exit 1
-            fi
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Checking if ready to build
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+          if [[ "$COMMIT_MSG" == *"[deploy]"* ]]; then
+            echo '✅ Ready to build'
+          else
+            echo '🚫 Not a deploy commit'
+            exit 1
+          fi
   build-push:
     needs: build-check
     runs-on: ubuntu-latest
