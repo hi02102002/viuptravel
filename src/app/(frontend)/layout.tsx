@@ -37,11 +37,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     >
       <body>
         <Providers>{children}</Providers>
-        {/* <Script
-          src="http://160.250.137.182:3001/script.js"
-          data-website-id="aa948207-1121-46f0-b1b1-01a55c8a8932"
-          defer
-        /> */}
       </body>
     </html>
   )

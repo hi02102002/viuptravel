@@ -45,7 +45,10 @@ function RecursiveDropdownItem({ navLink }: RecursiveDropdownItemProps) {
           <span>{navLink.label}</span>
         </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
-          <DropdownMenuSubContent>
+          <DropdownMenuSubContent
+            sideOffset={4}
+            className="w-64 shadow-none"
+          >
             {navLink.child_links?.map((childItem) => {
               if (!childItem) {
                 return null
@@ -87,6 +90,7 @@ export function RecursiveDropdown({ navLink, trigger }: RecursiveDropdownProps) 
       </DropdownMenuHoverTrigger>
       <DropdownMenuContent
         align="start"
+        className="w-64 shadow-none"
       >
         {navLink.child_links?.map((childItem) => {
           if (!childItem) {

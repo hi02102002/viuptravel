@@ -8,7 +8,7 @@ export async function MainHeader() {
 
   return (
     <div
-      className="sticky top-0 z-50 w-full bg-background h-24 flex items-center justify-center"
+      className="sticky top-0 z-50 w-full bg-background h-16 flex items-center justify-center"
     >
       <div className="app-container flex items-center gap-4 justify-between">
         <Link
@@ -39,7 +39,6 @@ export async function MainHeader() {
         </nav>
         <Button
           size="xl"
-          className="rounded-full"
         >
           Explore
         </Button>

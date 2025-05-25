@@ -13,8 +13,8 @@ export function NavLink({ navLink }: Props) {
     return (
       <ActiveLink
         href={navLink.url as string}
-        className="transition-colors hover:text-foreground/80 text-foreground/80 inline-flex p-2 uppercase font-medium"
-        activeClassName="text-foreground bg-primary text-white hover:text-white "
+        className="transition-colors hover:text-foreground/80 inline-flex font-medium text-lg"
+        activeClassName="text-blue-700 hover:text-blue-700"
         exact
         prefetch
         target={navLink.is_new_tab ? '_blank' : undefined}
@@ -30,8 +30,8 @@ export function NavLink({ navLink }: Props) {
       trigger={(
         <ActiveLink
           href={navLink.url as string}
-          className="transition-colors hover:text-foreground/80 text-foreground/80 inline-flex p-2 uppercase font-medium"
-          activeClassName="text-foreground bg-primary text-white hover:text-white"
+          className="transition-colors hover:text-foreground/80 inline-flex font-medium text-lg"
+          activeClassName="text-blue-700 hover:text-blue-700"
           exact
           prefetch
           target={navLink.is_new_tab ? '_blank' : undefined}
