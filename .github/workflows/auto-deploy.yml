@@ -59,8 +59,7 @@ jobs:
           script: |
             echo "Starting deployment..."
             sudo mkdir -p ~/apps/viuptravel
-            echo "📦 Pulling latest Docker images..."
-            sudo docker compose pull
+            cd ~/apps/viuptravel
             echo "🔁 Recreating containers..."
             sudo docker compose up -d --force-recreate
             echo "🧹 Cleaning up unused Docker resources..."
