@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Bridge } from '@/components/phosphor-icon'
 import { Button } from '@/components/ui/button'
 import { getHeader } from '@/queries/header'
 import { NavLink } from './nav-link'
