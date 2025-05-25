@@ -1,6 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { slug } from '@/payload/fields/slug'
-import { genSlug } from '@/payload/hooks/gen-slug'
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -8,6 +6,8 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { slug } from '@/payload/fields/slug'
+import { genSlug } from '@/payload/hooks/gen-slug'
 import { endpoints } from './endpoints'
 
 export const tours: CollectionConfig<'tours'> = {

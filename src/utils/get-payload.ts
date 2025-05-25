@@ -1,6 +1,6 @@
 import type { Payload } from 'payload'
-import payloadConfig from '@/payload.config'
 import { getPayload as gPayload } from 'payload'
+import payloadConfig from '@/payload.config'
 
 let payloadClient: Payload | null = null
 

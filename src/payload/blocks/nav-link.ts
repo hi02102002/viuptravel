@@ -71,4 +71,4 @@ function createRecursiveBlock(current = 0, maxDeep = 4): Block {
   }
 }
 
-export const NavLink = createRecursiveBlock(0, 4)
+export const NavLink = createRecursiveBlock(0, 2)

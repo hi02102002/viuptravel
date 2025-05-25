@@ -658,54 +658,6 @@ export interface Header {
                           value: number | Tour;
                         } | null);
                     is_new_tab?: boolean | null;
-                    child_links?:
-                      | {
-                          label: string;
-                          custom_url?: ('internal' | 'external') | null;
-                          url?: string | null;
-                          resource_to_link?:
-                            | ({
-                                relationTo: 'categories';
-                                value: number | Category;
-                              } | null)
-                            | ({
-                                relationTo: 'posts';
-                                value: number | Post;
-                              } | null)
-                            | ({
-                                relationTo: 'tours';
-                                value: number | Tour;
-                              } | null);
-                          is_new_tab?: boolean | null;
-                          child_links?:
-                            | {
-                                label: string;
-                                custom_url?: ('internal' | 'external') | null;
-                                url?: string | null;
-                                resource_to_link?:
-                                  | ({
-                                      relationTo: 'categories';
-                                      value: number | Category;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'posts';
-                                      value: number | Post;
-                                    } | null)
-                                  | ({
-                                      relationTo: 'tours';
-                                      value: number | Tour;
-                                    } | null);
-                                is_new_tab?: boolean | null;
-                                id?: string | null;
-                                blockName?: string | null;
-                                blockType: 'nav-link-5';
-                              }[]
-                            | null;
-                          id?: string | null;
-                          blockName?: string | null;
-                          blockType: 'nav-link-4';
-                        }[]
-                      | null;
                     id?: string | null;
                     blockName?: string | null;
                     blockType: 'nav-link-3';
@@ -794,36 +746,6 @@ export interface HeaderSelect<T extends boolean = true> {
                                       url?: T;
                                       resource_to_link?: T;
                                       is_new_tab?: T;
-                                      child_links?:
-                                        | T
-                                        | {
-                                            'nav-link-4'?:
-                                              | T
-                                              | {
-                                                  label?: T;
-                                                  custom_url?: T;
-                                                  url?: T;
-                                                  resource_to_link?: T;
-                                                  is_new_tab?: T;
-                                                  child_links?:
-                                                    | T
-                                                    | {
-                                                        'nav-link-5'?:
-                                                          | T
-                                                          | {
-                                                              label?: T;
-                                                              custom_url?: T;
-                                                              url?: T;
-                                                              resource_to_link?: T;
-                                                              is_new_tab?: T;
-                                                              id?: T;
-                                                              blockName?: T;
-                                                            };
-                                                      };
-                                                  id?: T;
-                                                  blockName?: T;
-                                                };
-                                          };
                                       id?: T;
                                       blockName?: T;
                                     };

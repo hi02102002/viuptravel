@@ -1,10 +1,5 @@
 import type { CollectionConfig } from 'payload'
 
-import { authenticated } from '@/payload/access/authenticated'
-import { authenticatedOrPublished } from '@/payload/access/authenticated-or-published'
-import { slug } from '@/payload/fields/slug'
-
-import { genSlug } from '@/payload/hooks/gen-slug'
 import {
   FixedToolbarFeature,
   HeadingFeature,
@@ -12,6 +7,11 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { authenticated } from '@/payload/access/authenticated'
+import { authenticatedOrPublished } from '@/payload/access/authenticated-or-published'
+
+import { slug } from '@/payload/fields/slug'
+import { genSlug } from '@/payload/hooks/gen-slug'
 import { endpoints } from './endpoints'
 
 export const posts: CollectionConfig<'posts'> = {
