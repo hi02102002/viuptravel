@@ -1,6 +1,6 @@
+import { dehydrate } from '@tanstack/react-query'
 import Hydrate from '@/components/hydrate'
 import { getQueryClient } from '@/libs/query-client'
-import { dehydrate } from '@tanstack/react-query'
 
 // Helper function to prefetch data in Server Components
 export async function prefetchQuery<T>({

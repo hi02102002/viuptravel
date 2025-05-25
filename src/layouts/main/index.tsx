@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { MainHeader } from './main-header'
 import { TopHeader } from './top-header'
 
 export function MainLayout({ children }: {
@@ -7,7 +8,8 @@ export function MainLayout({ children }: {
   return (
     <>
       <header>
-        <TopHeader />
+        {/* <TopHeader /> */}
+        <MainHeader />
       </header>
       {children}
     </>

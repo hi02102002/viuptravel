@@ -115,7 +115,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-crimson;
   }
 }
 
@@ -123,4 +123,9 @@
   .app-container {
     @apply max-w-[1472px] mx-auto px-4 w-full;
   }
+}
+
+@theme inline {
+  --font-crimson: var(--font-crimson-text) var(--font-sans);
+  --font-dm-sans: var(--font-dm-sans) var(--font-sans);
 }

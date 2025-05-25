@@ -51,12 +51,9 @@ jobs:
     needs: build-push
     steps:
       - name: executing remote ssh commands using ssh key
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@v1
         with:
-          command: |
-            cd /root/apps/viuptravel
-            sudo docker compose pull
-            sudo docker compose up -d --force-recreate
           host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          pass: ${{ secrets.PASSWORD }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script_path: ./scripts/deploy.sh

@@ -1,7 +1,7 @@
 import type { Icon } from '@phosphor-icons/react'
-import { getInfors } from '@/queries/get-infors'
 import { Envelope, FacebookLogo, Phone } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
+import { getInfors } from '@/queries/get-infors'
 
 type Content = {
   type: 'text'

@@ -44,3 +44,5 @@ next-env.d.ts
 /media
 docker-compose.prod.yml
 .env.keys
+gcp-gh-key
+gcp-gh-key.pub

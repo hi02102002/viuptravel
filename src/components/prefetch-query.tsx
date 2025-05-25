@@ -1,7 +1,7 @@
 import type { FetchQueryOptions } from '@tanstack/react-query'
+import { dehydrate } from '@tanstack/react-query'
 import Hydrate from '@/components/hydrate'
 import { getQueryClient } from '@/libs/query-client'
-import { dehydrate } from '@tanstack/react-query'
 
 export async function PrefetchQuery<T>({
   children,
