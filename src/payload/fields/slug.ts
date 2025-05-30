@@ -1,9 +1,9 @@
 import type { Field } from 'payload'
 import merge from 'lodash/merge'
 
-type Slug = (options?: { trackingField?: string }, overrides?: Partial<Field>) => Field
+type TSlug = (options?: { trackingField?: string }, overrides?: Partial<Field>) => Field
 
-export const slug: Slug = ({ trackingField = 'title' } = {}, overrides) =>
+export const slug: TSlug = ({ trackingField = 'title' } = {}, overrides) =>
   merge<Field, Partial<Field> | undefined>(
     {
       name: 'slug',

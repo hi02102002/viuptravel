@@ -2,7 +2,41 @@ import antfu from '@antfu/eslint-config'
 import nextPlugin from '@next/eslint-plugin-next'
 import pluginQuery from '@tanstack/eslint-plugin-query'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
-// import tailwind from 'eslint-plugin-tailwindcss'
+
+import tseslint from 'typescript-eslint'
+
+const tsNamingConventionRules = {
+  files: ['**/*.ts', '**/*.tsx'],
+  languageOptions: {
+    parser: tseslint.parser,
+    parserOptions: {
+      project: ['./tsconfig.json'],
+      tsconfigRootDir: process.cwd(),
+    },
+  },
+  rules: {
+    'ts/naming-convention': [
+      'warn',
+      {
+        selector: 'typeAlias',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^T[A-Z]',
+          match: true,
+        },
+      },
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^I[A-Z]',
+          match: true,
+        },
+      },
+    ],
+  },
+}
+
 
 export default antfu(
   {
@@ -12,7 +46,6 @@ export default antfu(
     ignores: ['migrations/**/*', 'next-env.d.ts', './src/app/(payload)/admin/importMap.js', './src/migrations/**/*', './src/payload/migrations/**/*'],
   },
   ...pluginQuery.configs['flat/recommended'],
-  // ...tailwind.configs['flat/recommended'],
   jsxA11y.flatConfigs.recommended,
   {
     plugins: {
@@ -43,4 +76,5 @@ export default antfu(
       ],
     },
   },
+  tsNamingConventionRules
 )

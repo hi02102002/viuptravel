@@ -7,7 +7,6 @@ export function MainLayout({ children }: {
   return (
     <>
       <header>
-        {/* <TopHeader /> */}
         <MainHeader />
       </header>
       {children}

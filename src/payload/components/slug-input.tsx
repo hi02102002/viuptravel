@@ -5,11 +5,11 @@ import { kebabCase, omit } from 'lodash'
 
 import { useEffect, useRef } from 'react'
 
-export type SlugInputProps = TextField & {
+export type TSlugInputProps = TextField & {
   trackingField: string
 }
 
-export function SlugInput(props: SlugInputProps) {
+export function SlugInput(props: TSlugInputProps) {
   // eslint-disable-next-line react/no-unstable-default-props
   const { trackingField, required, admin: { readOnly } = {}, ...rest } = props
 

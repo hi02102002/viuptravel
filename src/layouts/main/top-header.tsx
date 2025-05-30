@@ -1,9 +1,9 @@
 import type { Icon } from '@phosphor-icons/react'
 import { Envelope, FacebookLogo, Phone } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
-import { getInfors } from '@/queries/get-infors'
+import { getInfors } from '@/queries/local/get-infors'
 
-type Content = {
+type TContent = {
   type: 'text'
   value: string
   Icon: Icon
@@ -17,7 +17,7 @@ type Content = {
 export async function TopHeader() {
   const infors = await getInfors()
 
-  const CONTENTS: Array<Content | null> = [
+  const CONTENTS: Array<TContent | null> = [
     infors?.email
       ? {
           Icon: Envelope,

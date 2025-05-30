@@ -1,6 +1,9 @@
 import { Crimson_Text, DM_Sans } from 'next/font/google'
+import { headers } from 'next/headers'
+import { userAgent } from 'next/server'
 import React from 'react'
 import { Providers } from '@/providers'
+import { UserAgentProvider } from '@/providers/user-agent-provider'
 import './styles.css'
 
 const crimsonText = Crimson_Text({
@@ -27,8 +30,10 @@ export const metadata = {
   title: 'Payload Blank Template',
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const useragent = userAgent({
+    headers: await headers(),
+  })
 
   return (
     <html
@@ -36,7 +41,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       className={`${crimsonText.variable} ${dmSans.variable}`}
     >
       <body>
-        <Providers>{children}</Providers>
+        <UserAgentProvider
+          useragent={useragent}
+        >
+          <Providers>{children}</Providers>
+        </UserAgentProvider>
       </body>
     </html>
   )

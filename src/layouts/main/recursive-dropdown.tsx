@@ -2,19 +2,19 @@ import type { Header } from '@/payload-types'
 import Link from 'next/link'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuHoverTrigger, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger } from '@/components/ui/dropdown-menu'
 
-type NavLink = NonNullable<Header['nav-links']>[number]
+type TNavLink = NonNullable<Header['nav-links']>[number]
 
-type RecursiveDropdownProps = {
-  navLink: NavLink
+type TRecursiveDropdownProps = {
+  navLink: TNavLink
   trigger: React.ReactNode
 }
 
-type RecursiveDropdownItemProps = {
-  navLink: NavLink
+type TRecursiveDropdownItemProps = {
+  navLink: TNavLink
   isRoot?: boolean
 }
 
-function getItemUrl(item: NavLink) {
+function getItemUrl(item: TNavLink) {
   if (item.custom_url === 'external' && item.url) {
     return item.url
   }
@@ -32,7 +32,7 @@ function getItemUrl(item: NavLink) {
   return '/'
 }
 
-function RecursiveDropdownItem({ navLink }: RecursiveDropdownItemProps) {
+function RecursiveDropdownItem({ navLink }: TRecursiveDropdownItemProps) {
   const hasChild = navLink.child_links && navLink.child_links.length > 0
   const url = getItemUrl(navLink)
   const target = navLink.is_new_tab ? '_blank' : undefined
@@ -42,11 +42,20 @@ function RecursiveDropdownItem({ navLink }: RecursiveDropdownItemProps) {
     return (
       <DropdownMenuSub>
         <DropdownMenuSubTrigger className="flex items-center justify-between">
-          <span>{navLink.label}</span>
+          <Link
+            href={url}
+            target={target}
+            rel={rel}
+            prefetch
+            className="cursor-pointer"
+          >
+            {navLink.label}
+          </Link>
         </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
           <DropdownMenuSubContent
             sideOffset={4}
+            alignOffset={-5}
             className="w-64 shadow-none"
           >
             {navLink.child_links?.map((childItem) => {
@@ -57,7 +66,7 @@ function RecursiveDropdownItem({ navLink }: RecursiveDropdownItemProps) {
               return (
                 <RecursiveDropdownItem
                   key={`${childItem.blockType}-${childItem.id}`}
-                  navLink={childItem as unknown as NavLink}
+                  navLink={childItem as unknown as TNavLink}
                 />
               )
             })}
@@ -73,7 +82,7 @@ function RecursiveDropdownItem({ navLink }: RecursiveDropdownItemProps) {
         href={url}
         target={target}
         rel={rel}
-        className="flex items-center justify-between w-full"
+        className="flex items-center justify-between w-full cursor-pointer"
         prefetch
       >
         <span>{navLink.label}</span>
@@ -82,7 +91,7 @@ function RecursiveDropdownItem({ navLink }: RecursiveDropdownItemProps) {
   )
 }
 
-export function RecursiveDropdown({ navLink, trigger }: RecursiveDropdownProps) {
+export function RecursiveDropdown({ navLink, trigger }: TRecursiveDropdownProps) {
   return (
     <DropdownMenu>
       <DropdownMenuHoverTrigger asChild className="focus-visible:outline-none">
@@ -100,7 +109,7 @@ export function RecursiveDropdown({ navLink, trigger }: RecursiveDropdownProps) 
           return (
             <RecursiveDropdownItem
               key={`${childItem.blockType}-${childItem.id}`}
-              navLink={childItem as unknown as NavLink}
+              navLink={childItem as unknown as TNavLink}
             />
           )
         })}

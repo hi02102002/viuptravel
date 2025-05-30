@@ -9,7 +9,7 @@ import { importMap } from './admin/importMap.js'
 import '@payloadcms/next/css'
 import './custom.scss'
 
-type Args = {
+type TArgs = {
   children: React.ReactNode
 }
 
@@ -22,7 +22,7 @@ const serverFunction: ServerFunctionClient = async function (args) {
   })
 }
 
-function Layout({ children }: Args) {
+function Layout({ children }: TArgs) {
   return (
     <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
       {children}
